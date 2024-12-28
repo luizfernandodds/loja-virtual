@@ -8,11 +8,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@EqualsAndHashCode
 @Entity
 @Table(name="product_brand")
 @SequenceGenerator(name="seq_product_brand", sequenceName ="seq_product_brand", allocationSize = 1, initialValue = 1)
