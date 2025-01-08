@@ -1,0 +1,6 @@
+SELECT constraint_name FROM information_schema.constraint_column_usage WHERE table_name = 'users_acess' and column_name = 'acess_id'
+AND constraint_name <> 'unique_acess_users'
+
+
+
+ALTER TABLE users_acess drop CONSTRAINT "ukh3208257bc3gr03vaucxt2dtp"

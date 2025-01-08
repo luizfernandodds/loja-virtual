@@ -1,7 +1,11 @@
 package com.dev.loja_virtual.model;
 
+import com.dev.loja_virtual.enums.AddressType;
+
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -42,5 +46,8 @@ public class Address {
 	@ManyToOne(targetEntity = Person.class)
 	@JoinColumn(name="person_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "person_fk"))
 	private Person person;
+	
+	@Enumerated(EnumType.STRING)
+	private AddressType addressType;
 	
 }
