@@ -21,9 +21,9 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(of = "id")
 @Entity
-@Table(name = "product_nf")
-@SequenceGenerator(name = "seq_product_nf", initialValue = 1, allocationSize = 1)
-public class ProductNF implements Serializable {
+@Table(name = "product_item_nf")
+@SequenceGenerator(name = "seq_product_item_nf", sequenceName = "seq_product_item_nf" , initialValue = 1, allocationSize = 1)
+public class ProductItemNF implements Serializable {
 	
 	/**
 	 * 
@@ -32,12 +32,11 @@ public class ProductNF implements Serializable {
 	
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_product_nf")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_product_item_nf")
 	private Long id;
 	
 	@Column(nullable = false)
 	private Double quantity;
-	
 	
 	@ManyToOne
 	@JoinColumn(name = "purchase_nf_id", nullable = false,
