@@ -3,6 +3,7 @@ package com.dev.loja_virtual.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.antlr.v4.runtime.misc.NotNull;
@@ -51,15 +52,21 @@ public class BuyAndSaleOnlineStore implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_buy_and_sale_onlie_store")
 	private Long id;
 	
-	@ManyToOne(targetEntity = PhysicsPerson.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "physic_person_id", nullable = false, 
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "physic_person_fk"))
-	private PhysicsPerson physicsPerson;
+	@ManyToOne(targetEntity = Person.class)
+	@JoinColumn(name = "person_id", nullable = false, 
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "person_fk"))
+	private Person person;
+	
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "delivery_address_id", nullable = false,
 	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "delivery_address_fk"))
-	private Address deliveryAddress;
+	private Address deliveryAddress; // Endereço de Entrega
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "billing_address_id", nullable = false,
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "billing_address_fk"))
+	private Address billingAddress; // Endereço de Cobrança
 	
 	@Column(name = "value_total", nullable = false)
 	private BigDecimal valueTotal;
@@ -85,21 +92,25 @@ public class BuyAndSaleOnlineStore implements Serializable {
 	
 	@Column(name = "shipping_cost", nullable = false)
 	@Temporal(TemporalType.DATE)
-	private BigDecimal shippingCost;
+	private BigDecimal shippingCost; // Valor do Frete
+	
+	@Column(name = "delivery_day", nullable = false)
+	private Integer deliveryDay; // Dia da Entrega
+	
+	
+	@Column(name = "billing_date", nullable = false)
+	private Integer billingDate; // Data da Venda
 	
 	@Column(name = "delivery_date", nullable = false)
 	@Temporal(TemporalType.DATE)
-	private Integer deliveryDate;
-	
-	@ManyToOne(targetEntity = JuridicPerson.class)
-	@JoinColumn(name = "juric_person_id", nullable = false, 
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "juric_person_fk"))
-	private JuridicPerson juridicPerson;
+	private Date deliveryDate; // Data da Entrega
 	
 	
-	@Enumerated(EnumType.STRING)
-	@JoinColumn(name = "status_sale_id", nullable = false)
-	private StatusSale statusSale;
+	
+	
+//	@Enumerated(EnumType.STRING)
+//	@JoinColumn(name = "status_sale_id", nullable = false)
+//	private StatusSale statusSale;
 	
 	@OneToMany(mappedBy = "buyAndSaleOnlineStore", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<SaleItem> saleItems = new ArrayList<>();

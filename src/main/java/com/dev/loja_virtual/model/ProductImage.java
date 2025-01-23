@@ -34,10 +34,10 @@ public class ProductImage implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_product_image")
 	private Long id;
 	
-	@Column(name = "image_original", columnDefinition = "text")
+	@Column(name = "image_original", columnDefinition = "text", nullable = false)
 	private String imageOriginal;
 	
-	@Column(name = "image_thumbnail", columnDefinition = "text")
+	@Column(name = "image_thumbnail", columnDefinition = "text", nullable = false)
 	private String imageThumbnail;
 	
 	@ManyToOne

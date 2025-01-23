@@ -2,6 +2,7 @@ package com.dev.loja_virtual.model;
 
 import java.io.Serializable;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,6 +30,7 @@ public class PaymentMethod implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_payment_method")
 	private Long id;
 	
+	@Column(nullable = false)
 	private String description;
 
 }

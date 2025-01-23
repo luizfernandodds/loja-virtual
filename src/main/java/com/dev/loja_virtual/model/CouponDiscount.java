@@ -35,7 +35,7 @@ public class CouponDiscount implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_coupon_discount")
 	private Long id;
 	
-	@Column(name = "cod_discount")
+	@Column(name = "cod_discount", nullable = false)
 	private String codDiscount;
 	
 	@Column(name = "value_real_discount")
@@ -44,7 +44,7 @@ public class CouponDiscount implements Serializable {
 	@Column(name = "value_percent_discount")
 	private BigDecimal valuePercentageDiscount;
 	
-	@Column(name = "dt_expiration_discount")
+	@Column(name = "dt_expiration_discount", nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date dtExpirationDiscount;
 	

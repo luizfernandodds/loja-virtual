@@ -16,6 +16,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
@@ -59,6 +60,11 @@ public class Users implements UserDetails {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return this.accesses;
 	}
+	
+	@ManyToOne(targetEntity = Person.class)
+	@JoinColumn(name = "person_id", nullable = false,
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "person_fk"))
+	private Person person;
 
 	@Override
 	public String getPassword() {

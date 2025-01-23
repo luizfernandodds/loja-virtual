@@ -38,22 +38,25 @@ public class PurchaseNF implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_purchase_nf")
 	private Long id;
 	
-	@Column(name = "number_nf")
+	@Column(name = "number_nf", nullable = false)
 	private String numberNF;
+	
+	@Column(name = "serial_nf", nullable = false)
+	private String serialNF;
 	
 	@Column(name = "description_obs")
 	private String descriptionObs;
 	
-	@Column(name = "value_total")
+	@Column(name = "value_total", nullable = false)
 	private BigDecimal valueTotal;
 	
 	@Column(name = "value_discount")
 	private BigDecimal valueDiscount;
 	
-	@Column(name = "value_icms")
+	@Column(name = "value_icms", nullable = false)
 	private BigDecimal valueICMS;
 	
-	@Column(name = "date_purchase")
+	@Column(name = "date_purchase", nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date datePurchase;
 	

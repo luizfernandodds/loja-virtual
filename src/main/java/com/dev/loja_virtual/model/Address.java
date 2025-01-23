@@ -2,6 +2,7 @@ package com.dev.loja_virtual.model;
 
 import com.dev.loja_virtual.enums.AddressType;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -28,19 +29,24 @@ public class Address {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_address")
 	private Long id;
 	
-	
+	@Column(nullable = false)
 	private String street;
 	
+	@Column(nullable = false)
 	private String cep;
 	
+	@Column(nullable = false)
 	private String number;
 	
 	private String complement;
 	
+	@Column(nullable = false)
 	private String district; // bairro
 	
+	@Column(nullable = false)
 	private String uf;
 	
+	@Column(nullable = false)
 	private String city;
 	
 	@ManyToOne(targetEntity = Person.class)

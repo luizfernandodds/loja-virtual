@@ -31,28 +31,34 @@ public class Product implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_product")
 	private Long id;
 	
-	@Column(name = "unit_type")
+	@Column(name = "unit_type", nullable = false)
 	private String unitType;
 	
+	@Column(nullable = false)
 	private String name;
 	
+	@Column(nullable = false)
 	private Boolean active = Boolean.TRUE;
 	
-	@Column(columnDefinition = "text", length = 2000)
+	@Column(columnDefinition = "text", length = 2000, nullable = false)
 	private String description;
 	
+	@Column(nullable = false)
 	private Double weight;
 	
+	@Column(nullable = false)
 	private Double width;
 	
+	@Column(nullable = false)
 	private Double height;
 	
+	@Column(nullable = false)
 	private Double depth;
 	
-	@Column(name = "selling_price")
-	private BigDecimal sellingPrice;
+	@Column(name = "selling_price", nullable = false)
+	private BigDecimal sellingPrice = BigDecimal.ZERO;
 	
-	@Column(name = "stock_quantity")
+	@Column(name = "stock_quantity", nullable = false)
 	private Integer stockQuantity = 0;
 	
 	@Column(name = "alert_stock_quantity")
