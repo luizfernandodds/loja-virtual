@@ -2,12 +2,21 @@ package com.dev.loja_virtual.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
@@ -72,6 +81,24 @@ public class Product implements Serializable {
 	
 	@Column(name = "quantity_click")
 	private Integer quantityClick;
+	
+	@ManyToOne(targetEntity = JuridicPerson.class)
+	@JoinColumn(name = "company_id", nullable = false, 
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "company_fk"))
+	private JuridicPerson company;
+	
+	@ManyToOne(targetEntity = ProductCategory.class)
+	@JoinColumn(name = "product_category_id", nullable = false,
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "product_category_fk"))
+	private ProductCategory productCategory = new ProductCategory();
+	
+	@ManyToOne(targetEntity = ProductBrand.class)
+	@JoinColumn(name = "product_brand_id", nullable = false,
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "product_brand_fk"))
+	private ProductBrand productBrand = new ProductBrand();
+	
+	@OneToMany(mappedBy = "produto", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<ProductImage> imagesProduct = new ArrayList<>();
 	
 	
 

@@ -41,10 +41,10 @@ public class ProductEvaluation implements Serializable {
 	@Column(nullable = false)
 	private String description;
 	
-	@ManyToOne(targetEntity = Person.class)
-	@JoinColumn(name = "person_id", nullable = false, 
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "person_fk"))
-	private Person person;
+	@ManyToOne(targetEntity = PhysicsPerson.class)
+	@JoinColumn(name = "physics_person_id", nullable = false, 
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "physics_person_fk"))
+	private PhysicsPerson physicsPerson;
 	
 	@ManyToOne
 	@JoinColumn(name = "product_id", nullable = false, 
@@ -53,7 +53,7 @@ public class ProductEvaluation implements Serializable {
 	
 	@ManyToOne(targetEntity = JuridicPerson.class)
 	@JoinColumn(name = "juric_person_id", nullable = false, 
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "juridic_person_f"))
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "juridic_person_fk"))
 	private JuridicPerson company;
 	
 }

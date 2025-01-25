@@ -2,11 +2,17 @@ package com.dev.loja_virtual.model;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
+import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
@@ -33,6 +39,20 @@ public class TrackingStatus implements Serializable {
 	@Column(name = "url_tracking")
 	private String urlTracking;
 	
-	/* Tem que saber qual os dados que a API vai passar */
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "buy_and_sale_id", nullable = false,
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "buy_and_sale_fk"))
+	private BuyAndSaleOnlineStore buyAndSaleOnlineStore;
+	
+	@JsonIgnore
+	@ManyToOne(targetEntity = JuridicPerson.class)
+	@JoinColumn(name = "company_id", nullable = false, 
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "company_fk"))
+	private JuridicPerson company;
+	
+
+	
+	
 
 }

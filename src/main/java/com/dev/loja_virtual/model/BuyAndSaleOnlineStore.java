@@ -105,22 +105,25 @@ public class BuyAndSaleOnlineStore implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date deliveryDate; // Data da Entrega
 	
+	@ManyToOne(targetEntity = JuridicPerson.class)
+	@JoinColumn(name = "company_id", nullable = false, 
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "company_fk"))
+	private JuridicPerson company;
 	
-	
-	
-//	@Enumerated(EnumType.STRING)
-//	@JoinColumn(name = "status_sale_id", nullable = false)
-//	private StatusSale statusSale;
+	@Enumerated(EnumType.STRING)
+	@JoinColumn(name = "status_sale_id", nullable = false)
+	private StatusSale statusSale;
 	
 	@OneToMany(mappedBy = "buyAndSaleOnlineStore", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<SaleItem> saleItems = new ArrayList<>();
 	
 	@Column(name = "code_label")
-	private String codeLabel;
+	private String codeLabel; // Codigo Etiqueta
 	
 	@Column(name = "url_print_label")
-	private String urlPrintLabel;
+	private String urlPrintLabel; // URL imprimir Etiqueta
 	
+	/* Frete que foi escolhido pelo cliente no momento da compra */
 	@Column(name = "service_tracking")
 	private String serviceTracking;
 	

@@ -56,4 +56,9 @@ public class Address {
 	@Enumerated(EnumType.STRING)
 	private AddressType addressType;
 	
+	@ManyToOne(targetEntity = JuridicPerson.class)
+	@JoinColumn(name = "company_id", nullable = false,
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "company_fk"))
+	private JuridicPerson company = new JuridicPerson(); //EMPRESA
+	
 }

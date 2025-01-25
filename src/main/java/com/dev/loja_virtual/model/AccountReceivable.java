@@ -46,27 +46,33 @@ public class AccountReceivable implements Serializable {
 	@JoinColumn(name = "person_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "person_fk"))
 	private Person person;
 	
-	
+	@Column(nullable = false)
 	private String description;
 	
 	@Enumerated(EnumType.STRING)
-	@Column(name = "status_account_receivable")
+	@Column(name = "status_account_receivable", nullable = false)
 	private StatusAccountReceivable statusAccountReceivable;
 	
 	@Temporal(TemporalType.DATE)
-	@Column(name = "date_birth")
-	private Date dateBirth;
+	@Column(name = "date_due", nullable = false)
+	private Date dateDue; // Data do Vencimento
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "date_payment")
-	private Date datePayment;
+	private Date datePayment; // Data do Pagamento
 	
 	
-	@Column(name = "value_total")
+	@Column(name = "value_total", nullable = false)
 	private BigDecimal valueTotal;
 	
 	@Column(name = "value_discount")
 	private BigDecimal valueDiscount;
+	
+	@ManyToOne(targetEntity = JuridicPerson.class)
+	@JoinColumn(name = "company_id", nullable = false,
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "company_fk"))
+	private JuridicPerson company = new JuridicPerson(); //EMPRESA
+	
 	
 	
 
