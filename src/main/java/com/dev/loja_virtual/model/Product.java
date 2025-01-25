@@ -97,7 +97,7 @@ public class Product implements Serializable {
 	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "product_brand_fk"))
 	private ProductBrand productBrand = new ProductBrand();
 	
-	@OneToMany(mappedBy = "produto", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "product", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<ProductImage> imagesProduct = new ArrayList<>();
 	
 	

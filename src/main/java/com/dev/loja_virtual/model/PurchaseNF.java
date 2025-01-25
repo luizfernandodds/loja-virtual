@@ -61,10 +61,10 @@ public class PurchaseNF implements Serializable {
 	private Date datePurchase;
 	
 	/* Campo também usado para o fornecedor do produto */
-	@ManyToOne(targetEntity = JuridicPerson.class)
-	@JoinColumn(name = "juridic_person_id", nullable = false, 
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "company_id_fk"))
-	private JuridicPerson person;
+	//@ManyToOne(targetEntity = JuridicPerson.class)
+	//@JoinColumn(name = "juridic_person_id", nullable = false, 
+	//foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "company_id_fk"))
+	//private JuridicPerson person;
 	
 	@ManyToOne(targetEntity = AccountPayable.class)
 	@JoinColumn(name = "account_payable_id", nullable = false,
