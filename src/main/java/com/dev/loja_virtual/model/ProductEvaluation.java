@@ -29,31 +29,38 @@ public class ProductEvaluation implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_product_evaluation")
 	private Long id;
 
 	@Column(nullable = false)
 	private Integer notes;
-	
+
 	@Column(nullable = false)
 	private String description;
-	
-	@ManyToOne(targetEntity = PhysicsPerson.class)
-	@JoinColumn(name = "physics_person_id", nullable = false, 
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "physics_person_fk"))
-	private PhysicsPerson physicsPerson;
-	
+
+	/*
+	 * @ManyToOne(targetEntity = PhysicsPerson.class)
+	 * 
+	 * @JoinColumn(name = "physics_person_id", nullable = false, foreignKey
+	 * = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "physics_person_fk"))
+	 * private PhysicsPerson physicsPerson;
+	 */
+
 	@ManyToOne
-	@JoinColumn(name = "product_id", nullable = false, 
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "product_fk"))
+	@JoinColumn(name = "product_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "product_fk"))
 	private Product product;
+
 	
-	@ManyToOne(targetEntity = JuridicPerson.class)
-	@JoinColumn(name = "juric_person_id", nullable = false, 
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "juridic_person_fk"))
-	private JuridicPerson company;
-	
+	 @ManyToOne(targetEntity = JuridicPerson.class)
+	 @JoinColumn(name = "company_id", nullable = false, 
+	 foreignKey	 = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "company_fk"))
+	 private JuridicPerson company;
+	 
+
+	@ManyToOne(targetEntity = Person.class)
+	@JoinColumn(name = "person_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "person_fk"))
+	private Person person;
+
 }

@@ -64,22 +64,32 @@ public class AccountPayable implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date dateDue; // Data de Vencimento
 	
+	@ManyToOne(targetEntity = Person.class)
+	@JoinColumn(name = "person_id", nullable = false, 
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT,  name = "person_fk"))
+	private Person person;
 	
-	@ManyToOne(targetEntity = PhysicsPerson.class)
-	@JoinColumn(name = "physics_person_id", nullable = false, 
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "physics_person_fk"))
-	private PhysicsPerson physicsPerson;
+	
+	/*
+	 * @ManyToOne(targetEntity = PhysicsPerson.class)
+	 * 
+	 * @JoinColumn(name = "physics_person_id", nullable = false, foreignKey
+	 * = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "physics_person_fk"))
+	 * private PhysicsPerson physicsPerson;
+	 */
 	
 	@ManyToOne
-	@JoinColumn(name = "person_supplier_id", nullable = false,
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "person_supplier_fk"))
-	private Person personSupplier; //Fornecedor
+	@JoinColumn(name = "supplier_id", nullable = false,
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "supplier_fk"))
+	private JuridicPerson supplier; //Fornecedor
 	
-	@ManyToOne(targetEntity = JuridicPerson.class)
-	@JoinColumn(name = "company_id", nullable = false,
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "company_fk"))
-	private JuridicPerson company = new JuridicPerson(); //EMPRESA
-	
+	/*
+	 * @ManyToOne(targetEntity = JuridicPerson.class)
+	 * 
+	 * @JoinColumn(name = "company_id", nullable = false, foreignKey
+	 * = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "company_fk"))
+	 * private JuridicPerson company = new JuridicPerson(); //EMPRESA
+	 */	
 	
 	
 

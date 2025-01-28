@@ -37,10 +37,13 @@ public class Acess implements GrantedAuthority {
 	@Column(nullable = false)
 	private String description; // Acess Ex > ROLE_ADMIN > ROLE_SYSADMIN > ROLE_CLIENT
 	
-	@ManyToOne(targetEntity = JuridicPerson.class)
-	@JoinColumn(name = "company_id", nullable = false,
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "company_fk"))
-	private JuridicPerson company = new JuridicPerson();
+	/*
+	 * @ManyToOne(targetEntity = JuridicPerson.class)
+	 * 
+	 * @JoinColumn(name = "company_id", nullable = false, foreignKey
+	 * = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "company_fk"))
+	 * private JuridicPerson company = new JuridicPerson();
+	 */
 
 	@JsonIgnore
 	@Override
@@ -48,5 +51,7 @@ public class Acess implements GrantedAuthority {
 		// TODO Auto-generated method stub
 		return this.description;
 	}
+
+
 
 }
