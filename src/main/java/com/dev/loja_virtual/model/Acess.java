@@ -1,20 +1,21 @@
 package com.dev.loja_virtual.model;
 
+import javax.persistence.Column;
+import javax.persistence.ConstraintMode;
+import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
 import org.springframework.security.core.GrantedAuthority;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.ConstraintMode;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ForeignKey;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -37,13 +38,10 @@ public class Acess implements GrantedAuthority {
 	@Column(nullable = false)
 	private String description; // Acess Ex > ROLE_ADMIN > ROLE_SYSADMIN > ROLE_CLIENT
 	
-	/*
-	 * @ManyToOne(targetEntity = JuridicPerson.class)
-	 * 
-	 * @JoinColumn(name = "company_id", nullable = false, foreignKey
-	 * = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "company_fk"))
-	 * private JuridicPerson company = new JuridicPerson();
-	 */
+	@ManyToOne(targetEntity = JuridicPerson.class)
+	@JoinColumn(name = "company_id", nullable = false, foreignKey
+	= @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "company_fk"))
+	private JuridicPerson company = new JuridicPerson();
 
 	@JsonIgnore
 	@Override
