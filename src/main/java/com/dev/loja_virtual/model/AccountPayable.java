@@ -38,39 +38,36 @@ public class AccountPayable implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_account_payable")
 	private Long id;
-	
+
 	@Column(nullable = false)
 	private String description;
-	
+
 	@Column(name = "value_total", nullable = false)
 	private BigDecimal valueTotal;
-	
+
 	@Column(name = "value_discount")
 	private BigDecimal valueDiscount;
-	
+
 	@Column(name = "status_account_payable", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private StatusAccountPayable statusAccountPayable;
-	
+
 	@Column(name = "date_payment")
 	@Temporal(TemporalType.DATE)
 	private Date datePayment; // Data de pagamento
-	
-	
+
 	@Column(name = "date_due")
 	@Temporal(TemporalType.DATE)
 	private Date dateDue; // Data de Vencimento
-	
+
 	@ManyToOne(targetEntity = Person.class)
-	@JoinColumn(name = "person_id", nullable = false, 
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "person_fk"))
+	@JoinColumn(name = "person_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "accp_person_fk"))
 	private Person person;
-	
-	
+
 	/*
 	 * @ManyToOne(targetEntity = PhysicsPerson.class)
 	 * 
@@ -78,19 +75,13 @@ public class AccountPayable implements Serializable {
 	 * = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "physics_person_fk"))
 	 * private PhysicsPerson physicsPerson;
 	 */
-	
+
 	@ManyToOne
-	@JoinColumn(name = "supplier_id", nullable = false,
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "supplier_fk"))
-	private JuridicPerson supplier; //Fornecedor
-	
-	
-	 @ManyToOne(targetEntity = JuridicPerson.class)
-	 @JoinColumn(name = "company_id", nullable = false, foreignKey
-	 = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "company_fk"))
-	 private JuridicPerson company = new JuridicPerson(); //EMPRESA
-	 	
-	
-	
+	@JoinColumn(name = "supplier_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "accp_supplier_fk"))
+	private JuridicPerson supplier; // Fornecedor
+
+	@ManyToOne(targetEntity = JuridicPerson.class)
+	@JoinColumn(name = "company_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "accp_jp_fk"))
+	private JuridicPerson company = new JuridicPerson(); // EMPRESA
 
 }

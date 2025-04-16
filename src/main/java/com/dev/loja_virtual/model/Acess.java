@@ -40,8 +40,8 @@ public class Acess implements GrantedAuthority {
 	
 	@ManyToOne(targetEntity = JuridicPerson.class)
 	@JoinColumn(name = "company_id", nullable = false, foreignKey
-	= @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "company_fk"))
-	private JuridicPerson company = new JuridicPerson();
+	= @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "acc_jp_fk"))
+	private JuridicPerson company;
 
 	@JsonIgnore
 	@Override

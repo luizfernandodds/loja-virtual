@@ -55,7 +55,7 @@ public class CouponDiscount implements Serializable {
 	
 	@ManyToOne(targetEntity = JuridicPerson.class)
 	@JoinColumn(name = "company_id", nullable = false,
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "company_fk"))
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "coupon_discount_jp_fk"))
 	private JuridicPerson company = new JuridicPerson(); //EMPRESA
 	
 

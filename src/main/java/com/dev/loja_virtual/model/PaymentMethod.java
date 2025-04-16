@@ -40,7 +40,7 @@ public class PaymentMethod implements Serializable {
 	
 	@ManyToOne(targetEntity = JuridicPerson.class)
 	@JoinColumn(name = "company_id", nullable = false,
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "company_fk"))
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "payment_method_jp_fk"))
 	private JuridicPerson company = new JuridicPerson(); //EMPRESA
 
 }

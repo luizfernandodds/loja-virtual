@@ -46,12 +46,12 @@ public class ProductItemNF implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name = "product_id", nullable = false, 
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "product_fk"))
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "pinf_product_fk"))
 	private Product product;
 	
 	@ManyToOne(targetEntity = JuridicPerson.class)
 	@JoinColumn(name = "company_id", nullable = false, 
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "company_fk"))
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "pinf_jp_fk"))
 	private JuridicPerson company;
 
 }

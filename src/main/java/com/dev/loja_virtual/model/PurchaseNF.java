@@ -74,12 +74,12 @@ public class PurchaseNF implements Serializable {
 	
 	@ManyToOne(targetEntity = Person.class)
 	@JoinColumn(name = "person_id", nullable = false, 
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT,  name = "person_fk"))
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT,  name = "purchase_nf_person_fk"))
 	private Person person;
 	
 	@ManyToOne(targetEntity = JuridicPerson.class)
 	@JoinColumn(name = "company_id", nullable = false, 
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "company_id_fk"))
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "purchase_nf_jp_fk"))
 	private JuridicPerson company;
 	
 

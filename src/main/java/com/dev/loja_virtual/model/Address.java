@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 import com.dev.loja_virtual.enums.AddressType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -50,16 +51,17 @@ public class Address {
 	@Column(nullable = false)
 	private String city;
 	
+	@JsonIgnore
 	@ManyToOne(targetEntity = Person.class)
-	@JoinColumn(name="person_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "person_fk"))
+	@JoinColumn(name="person_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "addr_person_fk"))
 	private Person person;
 	
 	@Enumerated(EnumType.STRING)
 	private AddressType addressType;
 	
 	@ManyToOne(targetEntity = JuridicPerson.class)
-	@JoinColumn(name = "company_id", nullable = false,
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "company_fk"))
-	private JuridicPerson company = new JuridicPerson(); //EMPRESA
+	@JoinColumn(name = "company_id", nullable = true,
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "addr_jp_fk"))
+	private JuridicPerson addressCompany = new JuridicPerson(); //EMPRESA
 	
 }

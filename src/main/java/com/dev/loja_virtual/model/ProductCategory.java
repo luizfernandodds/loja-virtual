@@ -38,6 +38,6 @@ public class ProductCategory implements Serializable {
 	
 	@ManyToOne(targetEntity = JuridicPerson.class)
 	@JoinColumn(name = "company_id", nullable = false, 
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "company_fk"))
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "product_category_jp_fk"))
 	private JuridicPerson company = new JuridicPerson();
 }

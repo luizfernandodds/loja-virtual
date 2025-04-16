@@ -38,7 +38,7 @@ public class ProductBrand implements Serializable {
 	
 	@ManyToOne(targetEntity = JuridicPerson.class)
 	@JoinColumn(name = "empresa_id", nullable = false, 
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "empresa_id_fk"))
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "product_brand_jp_fk"))
 	private JuridicPerson company;
 	
 }

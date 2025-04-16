@@ -22,6 +22,7 @@ public class LojaVirtualApplication {
 		System.out.println("Senha Encript: " + new BCryptPasswordEncoder().encode("1234"));
 		
 		
+		
 		SpringApplication.run(LojaVirtualApplication.class, args);
 		
 		

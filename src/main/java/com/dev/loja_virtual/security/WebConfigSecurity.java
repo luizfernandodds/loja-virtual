@@ -30,28 +30,38 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter implements H
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		
-		
-		http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-		.disable().authorizeRequests().antMatchers("/").permitAll()
-		.antMatchers("/index","/pagamento/**","/resources/**","/static/**","/templates/**","classpath:/static/**","classpath:/resources/**","classpath:/templates/**").permitAll()
-		.antMatchers(HttpMethod.POST, "/requisicaojunoboleto/**", "/notificacaoapiv2","/pagamento/**","/resources/**","/static/**","/templates/**","classpath:/static/**","classpath:/resources/**","classpath:/templates/**","/recuperarSenha","/criaAcesso").permitAll()
-		.antMatchers(HttpMethod.GET, "/requisicaojunoboleto/**", "/notificacaoapiv2","/pagamento/**","/resources/**","/static/**","/templates/**","classpath:/static/**","classpath:/resources/**","classpath:/templates/**","/recuperarSenha","/criaAcesso").permitAll()
-		.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-		
-		/* redireciona ou da um retorno para index quando desloga*/
-		.anyRequest().authenticated().and().logout().logoutSuccessUrl("/index")
-		
-		/*mapeia o logout do sistema*/
-		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-		
-		/*Filtra as requisicoes para login de JWT*/
-		.and().addFilterAfter(new JWTLoginFilter("/login", authenticationManager()),
-				UsernamePasswordAuthenticationFilter.class)
-		
-		.addFilterBefore(new JwtApiAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
-		
+
+	    http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+	        .disable()
+	        .authorizeRequests()
+	            // Permite acesso livre ao actuator
+	            .antMatchers("/loja/actuator/**").permitAll()
+
+	            // Meus endpoints públicos
+	            .antMatchers("/", "/index").permitAll()
+	            .antMatchers("/pagamento/**", "/recuperarSenha", "/criaAcesso").permitAll()
+	            .antMatchers("/resources/**", "/static/**", "/templates/**").permitAll()
+	            .antMatchers("classpath:/static/**", "classpath:/resources/**", "classpath:/templates/**").permitAll()
+
+	            .antMatchers(HttpMethod.POST, "/requisicaojunoboleto/**", "/notificacaoapiv2").permitAll()
+	            .antMatchers(HttpMethod.GET, "/requisicaojunoboleto/**", "/notificacaoapiv2").permitAll()
+	            .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+
+	            // Tudo o que não foi explicitamente liberado precisa de autenticação
+	            .anyRequest().authenticated()
+
+	        // Logout
+	        .and()
+	            .logout().logoutSuccessUrl("/index")
+	            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+
+	        // JWT Filters
+	        .and()
+	            .addFilterAfter(new JWTLoginFilter("/login", authenticationManager()),
+	                    UsernamePasswordAuthenticationFilter.class)
+	            .addFilterBefore(new JwtApiAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
+
 	
 	
 	/*Irá consultar o user no banco com Spring Security*/

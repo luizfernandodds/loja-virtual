@@ -50,18 +50,18 @@ public class ProductEvaluation implements Serializable {
 	 */
 
 	@ManyToOne
-	@JoinColumn(name = "product_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "product_fk"))
+	@JoinColumn(name = "product_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "pe_product_fk"))
 	private Product product;
 
 	
 	 @ManyToOne(targetEntity = JuridicPerson.class)
 	 @JoinColumn(name = "company_id", nullable = false, 
-	 foreignKey	 = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "company_fk"))
+	 foreignKey	 = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "pe_jp_fk"))
 	 private JuridicPerson company;
 	 
 
 	@ManyToOne(targetEntity = Person.class)
-	@JoinColumn(name = "person_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "person_fk"))
+	@JoinColumn(name = "person_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "pe_person_fk"))
 	private Person person;
 
 }

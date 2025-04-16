@@ -53,18 +53,18 @@ public class BuyAndSaleOnlineStore implements Serializable {
 	
 	@ManyToOne(targetEntity = Person.class)
 	@JoinColumn(name = "person_id", nullable = false, 
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "person_fk"))
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "bs_person_fk"))
 	private Person person;
 	
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "delivery_address_id", nullable = false,
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "delivery_address_fk"))
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "bs_delivery_address_fk"))
 	private Address deliveryAddress; // Endereço de Entrega
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "billing_address_id", nullable = false,
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "billing_address_fk"))
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "bs_billing_address_fk"))
 	private Address billingAddress; // Endereço de Cobrança
 	
 	@Column(name = "value_total", nullable = false)
@@ -75,17 +75,17 @@ public class BuyAndSaleOnlineStore implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name = "payment_method_id", nullable = false,
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "payment_method_fk"))
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "bs_payment_method_fk"))
 	private PaymentMethod paymentMethod;
 	
 	@JsonIgnoreProperties(allowGetters = true)
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "sale_nf_id", nullable = true, 
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "sale_nf_fk"))
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "bs_sale_nf_fk"))
 	private SaleNF saleNF;
 	
 	@ManyToOne
-	@JoinColumn(name = "coupon_discount_id", foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "coupon_discount_fk"))
+	@JoinColumn(name = "coupon_discount_id", foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "bs_coupon_discount_fk"))
 	private CouponDiscount couponDiscount;
 	
 	
@@ -105,7 +105,7 @@ public class BuyAndSaleOnlineStore implements Serializable {
 	
 	@ManyToOne(targetEntity = JuridicPerson.class)
 	@JoinColumn(name = "company_id", nullable = false, 
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "company_fk"))
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "bs_jp_fk"))
 	private JuridicPerson company;
 	
 	@Enumerated(EnumType.STRING)

@@ -39,17 +39,17 @@ public class SaleItem implements Serializable {
 	private Double quantity;
 
 	@ManyToOne
-	@JoinColumn(name = "product_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "product_fk"))
+	@JoinColumn(name = "product_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "sale_item_product_fk"))
 	private Product product;
 
 	@ManyToOne
-	@JoinColumn(name = "buy_and_sale_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "buy_and_sale_fk"))
+	@JoinColumn(name = "buy_and_sale_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "sales_item_buy_and_sale_fk"))
 	private BuyAndSaleOnlineStore buyAndSaleOnlineStore;
 	
 	
 	@ManyToOne(targetEntity = JuridicPerson.class)
 	@JoinColumn(name = "empresa_id", nullable = false, 
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "empresa_id_fk"))
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "sale_item_jp_fk"))
 	private JuridicPerson company;
 	
 }

@@ -1,14 +1,24 @@
 package com.dev.loja_virtual.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 @Entity
 @Table(name = "juridic_person")
 public class JuridicPerson extends Person {
@@ -34,4 +44,13 @@ public class JuridicPerson extends Person {
 	private String companyName; // Razão Social
 	
 	private String category;
+	
+	@ManyToOne(optional = true)
+	@JsonBackReference
+	@JoinColumn(name = "representative_id", nullable = false)
+    private PhysicsPerson representative; // Sócio responsável, opcional
+
+    @OneToMany(mappedBy = "company")
+    private List<Person> people = new ArrayList<>();
+	
 }

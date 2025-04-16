@@ -43,13 +43,13 @@ public class TrackingStatus implements Serializable {
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "buy_and_sale_id", nullable = false,
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "buy_and_sale_fk"))
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "trackk_buy_and_sale_fk"))
 	private BuyAndSaleOnlineStore buyAndSaleOnlineStore;
 	
 	@JsonIgnore
 	@ManyToOne(targetEntity = JuridicPerson.class)
 	@JoinColumn(name = "company_id", nullable = false, 
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "company_fk"))
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "tracking_status_jp_fk"))
 	private JuridicPerson company;
 	
 

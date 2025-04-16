@@ -44,7 +44,7 @@ public class AccountReceivable implements Serializable {
 	private Long id;
 	
 	@ManyToOne(targetEntity = Person.class)
-	@JoinColumn(name = "person_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "person_fk"))
+	@JoinColumn(name = "person_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "accr_person_fk"))
 	private Person person;
 	
 	@Column(nullable = false)
@@ -71,7 +71,7 @@ public class AccountReceivable implements Serializable {
 	
 	@ManyToOne(targetEntity = JuridicPerson.class)
 	@JoinColumn(name = "company_id", nullable = false,
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "company_fk"))
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "accr_jp_fk"))
 	private JuridicPerson company = new JuridicPerson(); //EMPRESA
 	
 	

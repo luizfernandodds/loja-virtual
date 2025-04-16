@@ -63,12 +63,12 @@ public class SystemUser implements UserDetails {
 	
 	@ManyToOne(targetEntity = Person.class)
 	@JoinColumn(name = "person_id", nullable = false,
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "person_fk"))
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "sys_user_person_fk"))
 	private Person person;
 	
 	@ManyToOne(targetEntity = Person.class)
 	@JoinColumn(name = "company_id", nullable = false, 
-	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "company_fk"))
+	foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "sys_user_jp_fk"))
 	private Person company;
 
 	public Long getId() {
